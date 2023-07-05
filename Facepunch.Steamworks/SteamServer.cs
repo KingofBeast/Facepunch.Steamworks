@@ -400,6 +400,16 @@ namespace Steamworks
 			}
 		}
 
+		public static unsafe BeginAuthResult BeginAuthSessionWithResponse( byte[] data, SteamId steamid )
+		{
+			fixed ( byte* p = data )
+			{
+				var result = Internal.BeginAuthSession( (IntPtr)p, data.Length, steamid );
+
+				return result;
+			}
+		}
+
 		/// <summary>
 		/// Forget this guy. They're no longer in the game.
 		/// </summary>
